@@ -90,7 +90,7 @@ cidr_blocks = ["0.0.0.0/0"]
   }
 
   tags = {
-    Name = "web-sg"
+    Name = "websg"
   }
 }
 
