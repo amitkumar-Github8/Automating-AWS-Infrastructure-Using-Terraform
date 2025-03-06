@@ -98,18 +98,7 @@ resource "aws_s3_bucket" "example" {
   bucket = "amit-terraform-2025-project"
 }
 
-resource "aws_s3_bucket_public_access_block" "example1" {
-  bucket = aws_s3_bucket.example.id
-
-  block_public_acls       = false
-  block_public_policy     = false
-  ignore_public_acls      = false
-  restrict_public_buckets = false
-}
-resource "aws_s3_bucket_acl" "example2" {
-  bucket = aws_s3_bucket.example.id
-  acl    = "public-read"
-}
+# Create EC2 Instance
 
 resource "aws_instance" "webserver1" {
   ami                    = "ami-04b4f1a9cf54c11d0"
@@ -148,7 +137,7 @@ resource "aws_lb_target_group" "tg" {
   vpc_id   = aws_vpc.myvpc.id
 
   health_check {
-    path = "/ "
+    path = "/health"
     port = "traffic-port"
   }
 }
